@@ -6,7 +6,10 @@
     <title>About Me</title>
 </head>
 <body>
-    <h1>About Me</h1>
-    <p>Halo Nama saya <?php echo $data['nama']; ?>, saya seorang <?php echo $data['pekerjaan']; ?>.</p>
+    <div class="container">
+        <h1 class="mt-4">About Me</h1>
+        <img src="<?php echo BASEURL; ?>/img/dono.jpg" width="200" class="rounded-circle shadow">
+        <p>Halo, nama saya <?php echo $data['nama']; ?>, saya adalah seorang <?php echo $data['pekerjaan']; ?></p>
+    </div>
 </body>
 </html>

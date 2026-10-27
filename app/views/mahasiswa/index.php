@@ -1,7 +1,12 @@
-
 <div class="container mt-4">
     <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6">
+            <?php Flasher::flash(); ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-8">
+
             <button type="button" class="btn btn-primary"
                     data-toggle="modal" data-target="#exampleModal">
                 Tambah Data Mahasiswa
@@ -12,18 +17,30 @@
             <ul class="list-group">
                 <?php foreach ($data['mhs'] as $mhs) : ?>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <?= htmlspecialchars($mhs['nama']); ?>
+                        <span>
+                            <?= htmlspecialchars($mhs['nama']); ?>
+                        </span>
 
-                        <a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id']; ?>"
-                           class="badge badge-primary">
-                            Detail
-                        </a>
+                        <div class="d-flex align-items-center">
+                            <a href="<?= BASEURL; ?>/mahasiswa/detail/<?= $mhs['id']; ?>"
+                               class="badge badge-primary mr-2">
+                                Detail
+                            </a>
+
+                            <a href="<?= BASEURL; ?>/mahasiswa/hapus/<?= $mhs['id']; ?>"
+                               class="badge badge-danger"
+                               onclick="return confirm('Yakin ingin menghapus data?');">
+                                Hapus
+                            </a>
+                        </div>
                     </li>
                 <?php endforeach; ?>
             </ul>
+            </div>
         </div>
     </div>
 </div>
+
 
 <!-- Modal Tambah Mahasiswa -->
 <div class="modal fade" id="exampleModal" tabindex="-1"

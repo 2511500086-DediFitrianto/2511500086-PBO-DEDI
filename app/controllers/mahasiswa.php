@@ -23,19 +23,31 @@ class mahasiswa extends controller
 
     public function tambah()
     {
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            header('Location: ' . BASEURL . '/mahasiswa');
-            exit;
-        }
-
-        $hasil = $this->model('mahasiswa_model')
-                      ->tambahDataMahasiswa($_POST);
+        $hasil = $this->model('mahasiswa_model')->tambahDataMahasiswa($_POST);
 
         if ($hasil > 0) {
+            Flasher::setFlash('berhasil', 'ditambahkan', 'success');
+            header('Location: ' . BASEURL . '/mahasiswa');
+            exit;
+        } else {
+            Flasher::setFlash('gagal', 'ditambahkan', 'danger');
             header('Location: ' . BASEURL . '/mahasiswa');
             exit;
         }
+    }
 
-        echo "Data mahasiswa gagal ditambahkan. Periksa kembali model dan struktur tabel database.";
+    public function hapus($id)
+    {
+        $hasil = $this->model('mahasiswa_model')->hapusDataMahasiswa($id);
+
+        if ($hasil > 0) {
+            Flasher::setFlash('berhasil', 'dihapus', 'success');
+            header('Location: ' . BASEURL . '/mahasiswa');
+            exit;
+        } else {
+            Flasher::setFlash('gagal', 'dihapus', 'danger');
+            header('Location: ' . BASEURL . '/mahasiswa');
+            exit;
+        }
     }
 }
